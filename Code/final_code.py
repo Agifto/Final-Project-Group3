@@ -11,6 +11,8 @@ from keras.layers import Activation, Dropout, Flatten, Dense
 from keras import backend as K
 from keras.callbacks import TensorBoard
 from keras.callbacks import EarlyStopping
+import wget
+
 
 tensorboard = TensorBoard(log_dir='./my_log_dir', histogram_freq=0, write_graph=True, write_images=False)
 
@@ -61,6 +63,14 @@ model.compile(loss='mean_squared_error',
 train_datagen = ImageDataGenerator(rescale = 1./255, featurewise_center=True, featurewise_std_normalization=True)
 validation_datagen = ImageDataGenerator(rescale = 1./255)
 test_datagen = ImageDataGenerator(rescale = 1./255)
+
+file_list = ["Train", "Test", "Validation"]
+
+for files in file_list:
+
+    url = 'https://console.cloud.google.com/storage/browser/group3mlproject/final_project/' + files
+    wget.download(url, './')
+
 
 # # Bringing the data in, resizing it and doing other preprocessing
 train_generator = train_datagen.flow_from_directory(directory=r'/home/ubuntu/Deep-Learning/final_project/Train/', target_size= (img_width, img_height), color_mode = 'rgb', batch_size = batch_size, class_mode = 'categorical', shuffle=True)
