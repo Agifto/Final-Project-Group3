@@ -1,2 +1,2 @@
-data_sectioning.py is the file we used to split our train, test, anad validation. Don't run this script.
+data_sectioning.py is the file we used to split our train, test, and validation. Don't run this script.
 final_project.py is our final model script. Run this script.
